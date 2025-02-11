@@ -4,6 +4,7 @@ import numpy as np
 from datetime import datetime
 import os
 import traceback
+from korea_map import KoreaMapVisualizer
 
 # 상수 정의
 INPUT_FILE = "C:/Users/Hyodong.Moon/Desktop/HDMOON/python workplace/PyPSA-master/PyPSA-HD/input_data.xlsx"
@@ -556,6 +557,11 @@ def check_excel_data_loading(input_data):
             print(f"\n누락된 필수 컬럼: {missing_columns}")
 
 def main():
+    # 지도 시각화
+    visualizer = KoreaMapVisualizer()
+    if visualizer.load_map_data():
+        visualizer.plot_korea_map()
+    
     input_data = read_input_data(INPUT_FILE)
     if input_data is None:
         return
